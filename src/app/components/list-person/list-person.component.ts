@@ -15,9 +15,10 @@ export class ListPersonComponent implements OnInit {
   listCountries: any;
   listDepartments: any;
   listPerson: any;
+  incorrectForm: boolean;
 
   constructor(private fb: FormBuilder, private _departmentService: DepartmentService, private _countryService: CountryService, private _personService: PersonService) {
-
+    this.incorrectForm = false;
     this.personForm = this.fb.group({
       id: [''],
       name: ['', Validators.required],

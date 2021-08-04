@@ -1,36 +1,43 @@
-<div class="container form">
-    <h2>Create Person</h2>
-    <form [formGroup]="personForm" (ngSubmit)="save()" class="pt-5">
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" formControlName="name" class="form-control">
+<div class="card bg-light mb-5">
+    <div class="card-body">
+        <h2 class="card-title text-center">Create Person</h2>
+        <div class="d-flex justify-content-center">
+            <span *ngIf="incorrectForm" class="badge bg-danger mt-2">All fields are required</span>
         </div>
-        <div class="form-group">
-            <label>LastName</label>
-            <input type="text" formControlName="lastname" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Age</label>
-            <input type="number" formControlName="age" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Country</label>
-            <select class="form-select" name="country" id="country" formControlName="country">
+        <form [formGroup]="personForm" (ngSubmit)="save()" class="">
+            <div class="form-group mb-2">
+                <label>Name</label>
+                <input type="text" formControlName="name" class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label>LastName</label>
+                <input type="text" formControlName="lastname" class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label>Age</label>
+                <input type="number" formControlName="age" class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label>Country</label>
+                <select class="form-select" name="country" id="country" formControlName="country">
               <option [ngValue]="country" *ngFor="let country of listCountries">{{country.name}}</option>
             </select>
-        </div>
-        <div class="form-group">
-            <label>Department</label>
-            <select class="form-select" name="department" id="department" formControlName="department">
+            </div>
+            <div class="form-group mb-2">
+                <label>Department</label>
+                <select class="form-select" name="department" id="department" formControlName="department">
             <option [ngValue]="department" *ngFor="let department of listDepartments">{{department.name}}</option>
           </select>
-        </div>
-        <button class="btn btn-primary" [disabled]="personForm.invalid">SAVE</button>
-    </form>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary d-flex justify-content-center mt-3" [disabled]="personForm.invalid">SAVE</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-<div class="container ">
-    <h2>Registred Person</h2>
+<div class="container mt-5 mb-5">
+    <h2 class="text-center mb-5">Registered Persons</h2>
     <table class="table table-striped">
 
         <thead>
