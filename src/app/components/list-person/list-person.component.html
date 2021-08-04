@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container form">
     <h2>Create Person</h2>
     <form [formGroup]="personForm" (ngSubmit)="save()" class="pt-5">
         <div class="form-group">
@@ -15,20 +15,48 @@
         </div>
         <div class="form-group">
             <label>Country</label>
-            <select class="form-select" name="country" id="country" formControlName="country" (change)="loadDepartmentsByCountryId($event)">
-              <option [value]="country.id" *ngFor="let country of listCountries">{{country.name}}</option>
+            <select class="form-select" name="country" id="country" formControlName="country">
+              <option [ngValue]="country" *ngFor="let country of listCountries">{{country.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <label>Department</label>
             <select class="form-select" name="department" id="department" formControlName="department">
-            <option value="department.id" *ngFor="let department of listDepartments">{{department.name}}</option>
+            <option [ngValue]="department" *ngFor="let department of listDepartments">{{department.name}}</option>
           </select>
         </div>
-        <div class="form-group">
-            <label>Department</label>
-            <input type="text" formControlName="department" class="form-control">
-        </div>
-        <button class="btn btn-primary">SAVE</button>
+        <button class="btn btn-primary" [disabled]="personForm.invalid">SAVE</button>
     </form>
+</div>
+
+<div class="container ">
+    <h2>Registred Person</h2>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Age</th>
+                <th scope="col">Country</th>
+                <th scope="col">Department</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of listPerson">
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.lastname }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.country.name }}</td>
+                <td>{{ person.department.name }}</td>
+                <td>
+                    <i (click)="edit(person)" class="fas fa-edit text-primary m-2"></i>
+                    <i (click)="delete(person)" class="fas fa-trash-alt text-danger m-2"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
